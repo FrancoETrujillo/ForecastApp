@@ -1,4 +1,4 @@
-package com.mvatech.ftrujillo.forecast.data.network.response
+package com.mvatech.ftrujillo.forecast.data.network
 
 import android.content.Context
 import android.net.ConnectivityManager
@@ -6,7 +6,8 @@ import com.mvatech.ftrujillo.forecast.internal.exceptions.NoConnectivityExceptio
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class ConnectivityInterceptorImpl(context: Context) : ConnectivityInterceptor {
+class ConnectivityInterceptorImpl(context: Context) :
+    ConnectivityInterceptor {
 
     private val appContext = context.applicationContext
 

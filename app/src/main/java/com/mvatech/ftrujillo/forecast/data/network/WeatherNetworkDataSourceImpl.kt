@@ -1,9 +1,9 @@
-package com.mvatech.ftrujillo.forecast.data.network.response
+package com.mvatech.ftrujillo.forecast.data.network
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.mvatech.ftrujillo.forecast.data.CurrentWeatherResponse
+import com.mvatech.ftrujillo.forecast.data.network.response.CurrentWeatherResponse
 import com.mvatech.ftrujillo.forecast.internal.exceptions.NoConnectivityException
 
 class WeatherNetworkDataSourceImpl(

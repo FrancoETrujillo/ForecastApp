@@ -1,7 +1,7 @@
-package com.mvatech.ftrujillo.forecast.data.network.response
+package com.mvatech.ftrujillo.forecast.data.network
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.mvatech.ftrujillo.forecast.data.CurrentWeatherResponse
+import com.mvatech.ftrujillo.forecast.data.network.response.CurrentWeatherResponse
 import kotlinx.coroutines.Deferred
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -24,7 +24,7 @@ interface ApixuWheatherApiService {
     companion object {
         operator fun invoke(
             connectivityInterceptor: ConnectivityInterceptor
-        ): ApixuWheatherApiService{
+        ): ApixuWheatherApiService {
             val requestInterceptor = Interceptor { chain ->
                 val url = chain.request()
                     .url()

@@ -1,13 +1,14 @@
 package com.mvatech.ftrujillo.forecast
 
 import android.app.Application
-import androidx.preference.Preference
 import androidx.preference.PreferenceManager
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.mvatech.ftrujillo.forecast.data.db.ForecastDatabase
 import com.mvatech.ftrujillo.forecast.data.db.repository.ForecastRepository
 import com.mvatech.ftrujillo.forecast.data.db.repository.ForecastRepositoryImpl
-import com.mvatech.ftrujillo.forecast.data.network.response.*
+import com.mvatech.ftrujillo.forecast.data.network.*
+import com.mvatech.ftrujillo.forecast.data.providers.LocationProvider
+import com.mvatech.ftrujillo.forecast.data.providers.LocationProviderImpl
 import com.mvatech.ftrujillo.forecast.data.providers.UnitProvider
 import com.mvatech.ftrujillo.forecast.data.providers.UnitProviderImpl
 import com.mvatech.ftrujillo.forecast.ui.weather.current.CurrentWeatherViewModelFactory
@@ -25,10 +26,21 @@ class ForecastApplication : Application(), KodeinAware{
 
         bind() from singleton { ForecastDatabase(instance())}
         bind() from singleton { instance<ForecastDatabase>().currentWeatherDao()}
-        bind<ConnectivityInterceptor>() with singleton { ConnectivityInterceptorImpl(instance()) }
-        bind() from singleton { ApixuWheatherApiService(instance())}
-        bind<WeatherNetworkDataSource>() with singleton { WeatherNetworkDataSourceImpl(instance()) }
-        bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance()) }
+        bind() from singleton { instance<ForecastDatabase>().weatherLocationDao()}
+
+        bind<ConnectivityInterceptor>() with singleton {
+            ConnectivityInterceptorImpl(
+                instance()
+            )
+        }
+        bind() from singleton { ApixuWheatherApiService(instance()) }
+        bind<WeatherNetworkDataSource>() with singleton {
+            WeatherNetworkDataSourceImpl(
+                instance()
+            )
+        }
+        bind<LocationProvider>() with singleton { LocationProviderImpl() }
+        bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance(), instance(), instance()) }
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
         bind() from provider { CurrentWeatherViewModelFactory(instance(), instance()) }
 

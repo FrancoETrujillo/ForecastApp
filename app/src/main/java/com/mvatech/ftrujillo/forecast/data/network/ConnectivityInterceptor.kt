@@ -1,4 +1,4 @@
-package com.mvatech.ftrujillo.forecast.data.network.response
+package com.mvatech.ftrujillo.forecast.data.network
 
 import okhttp3.Interceptor
 

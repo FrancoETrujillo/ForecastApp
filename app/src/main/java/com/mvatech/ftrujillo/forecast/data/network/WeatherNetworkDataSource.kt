@@ -1,7 +1,7 @@
-package com.mvatech.ftrujillo.forecast.data.network.response
+package com.mvatech.ftrujillo.forecast.data.network
 
 import androidx.lifecycle.LiveData
-import com.mvatech.ftrujillo.forecast.data.CurrentWeatherResponse
+import com.mvatech.ftrujillo.forecast.data.network.response.CurrentWeatherResponse
 
 interface WeatherNetworkDataSource {
     val downloadedCurrentWeather: LiveData<CurrentWeatherResponse>
