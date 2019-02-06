@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Forecast</string>
+    <string name="loading">Loading</string>
+    <string name="icon_weather_description">Icon describing the weather type</string>
 </resources>
