@@ -1,7 +1,9 @@
 package com.mvatech.ftrujillo.forecast
 
 import android.app.Application
+import android.content.Context
 import androidx.preference.PreferenceManager
+import com.google.android.gms.location.LocationServices
 import com.jakewharton.threetenabp.AndroidThreeTen
 import com.mvatech.ftrujillo.forecast.data.db.ForecastDatabase
 import com.mvatech.ftrujillo.forecast.data.db.repository.ForecastRepository
@@ -27,7 +29,6 @@ class ForecastApplication : Application(), KodeinAware{
         bind() from singleton { ForecastDatabase(instance())}
         bind() from singleton { instance<ForecastDatabase>().currentWeatherDao()}
         bind() from singleton { instance<ForecastDatabase>().weatherLocationDao()}
-
         bind<ConnectivityInterceptor>() with singleton {
             ConnectivityInterceptorImpl(
                 instance()
@@ -39,7 +40,8 @@ class ForecastApplication : Application(), KodeinAware{
                 instance()
             )
         }
-        bind<LocationProvider>() with singleton { LocationProviderImpl() }
+        bind() from provider { LocationServices.getFusedLocationProviderClient(instance<Context>()) }
+        bind<LocationProvider>() with singleton { LocationProviderImpl(instance(),instance()) }
         bind<ForecastRepository>() with singleton { ForecastRepositoryImpl(instance(), instance(), instance(), instance()) }
         bind<UnitProvider>() with singleton { UnitProviderImpl(instance()) }
         bind() from provider { CurrentWeatherViewModelFactory(instance(), instance()) }

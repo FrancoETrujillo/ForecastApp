@@ -9,7 +9,7 @@
             android:defaultValue="true"
 android:disableDependentsState="true"/>
     <EditTextPreference
-        android:key="COSTOM_LOCATION"
+        android:key="CUSTOM_LOCATION"
         android:title="Location"
         android:summary="The location from which the weather is displayed"
         android:defaultValue="Columbus"
