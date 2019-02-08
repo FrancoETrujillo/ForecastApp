@@ -1,4 +1,4 @@
-package com.mvatech.ftrujillo.forecast.data.db.unitlocalized
+package com.mvatech.ftrujillo.forecast.data.db.unitlocalized.current
 
 interface UnitSpecificCurrentWeatherEntry {
     val temperature: Double

@@ -79,12 +79,15 @@ class LocationProviderImpl(
 
     private fun hasLocationPermission(): Boolean{
         return ContextCompat.checkSelfPermission(appContext,
-            android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
+            android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun hasCustomLocationChanged(lastWeatherLocation: WeatherLocation): Boolean{
-        val customLocationName = getCustomLocationName()
-        return customLocationName != lastWeatherLocation.name
+        if(!isUsingDeviceLocation()){
+            val customLocationName = getCustomLocationName()
+            return customLocationName != lastWeatherLocation.name
+        }
+        return false
     }
 
     private fun getCustomLocationName(): String? {

@@ -4,18 +4,22 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.mvatech.ftrujillo.forecast.data.db.entity.CurrentWeatherEntry
+import com.mvatech.ftrujillo.forecast.data.db.entity.FutureWeatherEntry
 import com.mvatech.ftrujillo.forecast.data.db.entity.WeatherLocation
 
 const val DATABASE_NAME = "forecast.db"
 
 @Database(
-    entities = [CurrentWeatherEntry::class, WeatherLocation::class],
+    entities = [CurrentWeatherEntry::class, FutureWeatherEntry::class, WeatherLocation::class],
     version = 1
 )
+@TypeConverters(LocalDateConverter::class)
 abstract class ForecastDatabase(): RoomDatabase() {
     abstract fun currentWeatherDao(): CurrentWeatherDao
     abstract fun weatherLocationDao():WeatherLocationDao
+    abstract fun futureWeatherDao(): FutureWeatherDao
 
     companion object {
         @Volatile private var instance: ForecastDatabase? = null

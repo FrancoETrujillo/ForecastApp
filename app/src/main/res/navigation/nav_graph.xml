@@ -10,10 +10,15 @@
               android:label="current_weather_fragment" tools:layout="@layout/current_weather_fragment"/>
     <fragment android:id="@+id/futureDetailWeatherFragment"
               android:name="com.mvatech.ftrujillo.forecast.ui.weather.future.detailed.FutureDetailWeatherFragment"
-              android:label="future_detail_weather_fragment" tools:layout="@layout/future_detail_weather_fragment"/>
+              android:label="future_detail_weather_fragment" tools:layout="@layout/future_detail_weather_fragment">
+        <argument android:name="dateString" app:argType="string"/>
+    </fragment>
     <fragment android:id="@+id/futureListWeatherFragment"
               android:name="com.mvatech.ftrujillo.forecast.ui.weather.future.list.FutureListWeatherFragment"
-              android:label="future_list_weather_fragment" tools:layout="@layout/future_list_weather_fragment"/>
+              android:label="future_list_weather_fragment" tools:layout="@layout/future_list_weather_fragment">
+        <action android:id="@+id/actionDetail"
+                app:destination="@id/futureDetailWeatherFragment"/>
+    </fragment>
     <fragment android:id="@+id/settingsFragment"
               android:name="com.mvatech.ftrujillo.forecast.ui.settings.SettingsFragment"
               android:label="SettingsFragment"/>
